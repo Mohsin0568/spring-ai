@@ -3,6 +3,7 @@ package com.systa.apenai.config;
 import com.systa.apenai.TokenAuditAdvisor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
+import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,7 +20,14 @@ public class ChatConfig {
 
     @Bean
     public ChatClient getChatClient(final ChatClient.Builder chatClientBuilder){
+
+        final ChatOptions chatOptions = ChatOptions.builder()
+                .model("gpt-4.1-mini")
+//                .maxTokens(200)
+                .build();
+
         return chatClientBuilder
+                .defaultOptions(chatOptions)
                 .defaultAdvisors(List.of(new SimpleLoggerAdvisor(), tokenAuditAdvisor))
                 .defaultSystem("""
                         You are an internal HR assistant. Your role is to help\s
