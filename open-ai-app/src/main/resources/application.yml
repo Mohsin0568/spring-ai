@@ -1,3 +1,11 @@
+logging:
+  level:
+    org:
+      springframework:
+        ai:
+          chat:
+            client:
+              advisor: debug
 spring:
   application:
     name: open-ai-app
