@@ -29,6 +29,9 @@ public class RAGContoller {
     @Value("classpath:/promptTemplates/systemPromptRandomDataTemplate.st")
     Resource promptTemplate;
 
+    @Value("classpath:/promptTemplates/hrPolicyTemplate.st")
+    Resource hrPolicyPromptTemplate;
+
     @GetMapping("/chat")
     public ResponseEntity<String> randomChat(@RequestHeader("username") final String username,
                                              @RequestParam("message") final String message) {
@@ -55,7 +58,33 @@ public class RAGContoller {
                 .content();
 
         return ResponseEntity.ok(answer);
+    }
 
+    @GetMapping("/hr-policy")
+    public ResponseEntity<String> hrPolicyChat(@RequestHeader("username") final String username,
+                                             @RequestParam("message") final String message) {
+        final SearchRequest searchRequest = SearchRequest
+                .builder()
+                .query(message)
+                .topK(3)
+                .similarityThreshold(0.5)
+                .build();
 
+        final List<Document> similarDocuments = vectorStore.similaritySearch(searchRequest);
+
+        final String context = similarDocuments
+                .stream()
+                .map(Document :: getText)
+                .collect(Collectors.joining(System.lineSeparator()));
+
+        final String answer = chatClient
+                .prompt()
+                .system(promptSystemSpec -> promptSystemSpec.text(hrPolicyPromptTemplate).param("documents", context))
+                .advisors(a -> a.param(CONVERSATION_ID, username))
+                .user(message)
+                .call()
+                .content();
+
+        return ResponseEntity.ok(answer);
     }
 }

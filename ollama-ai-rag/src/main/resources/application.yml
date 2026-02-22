@@ -8,9 +8,17 @@ logging:
               advisor: debug
 
 spring:
+  docker:
+    compose:
+      stop:
+        command: DOWN
+
   application:
     name: ollama-ai-rag
   ai:
+#    openai:
+#      api-key: ${OPEN_API_KEY}
+
     model:
       chat: ollama
     ollama:
@@ -35,11 +43,6 @@ spring:
     driver-class-name: org.h2.Driver
     username: systa
     password: 12345
-
-docker:
-  compose:
-    stop:
-      command: down
 
 
 
