@@ -1,0 +1,49 @@
+logging:
+  level:
+    org:
+      springframework:
+        ai:
+          chat:
+            client:
+              advisor: debug
+
+spring:
+  application:
+    name: ollama-ai-rag
+  ai:
+    model:
+      chat: ollama
+    ollama:
+      chat:
+        model: llama3.2:1b
+      base-url: http://localhost:11434
+    chat:
+      memory:
+        repository:
+          jdbc:
+            initialize-schema=always
+
+    vectorstore:
+      qdrant:
+        initialize-schema: true
+        host: localhost
+        port: 6334
+        collection-name: systa
+
+  datasource:
+    url: jdbc:h2:file:~/chatmemory;AUTO_SERVER=true
+    driver-class-name: org.h2.Driver
+    username: systa
+    password: 12345
+
+docker:
+  compose:
+    stop:
+      command: down
+
+
+
+
+
+
+
