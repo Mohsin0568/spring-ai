@@ -18,7 +18,7 @@ import java.util.List;
 @Configuration
 public class ChatConfig {
 
-    @Bean
+    @Bean("defaultChatClient")
     public ChatClient getChatClientWithMemory(final ChatClient.Builder chatClientBuilder,
                                               final ChatMemory chatMemory,
                                               final RetrievalAugmentationAdvisor retrievalAugmentationAdvisor){

@@ -2,6 +2,7 @@ package com.systa.ai.controller;
 
 import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.SearchRequest;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.vectorstore.VectorStore;
@@ -19,11 +20,14 @@ import static org.springframework.ai.chat.memory.ChatMemory.CONVERSATION_ID;
 public class RAGContoller {
 
     private final ChatClient chatClient;
+    private final ChatClient webSearchChatClient;
     private final VectorStore vectorStore;
 
-    public RAGContoller (final ChatClient chatClient, final VectorStore vectorStore){
+    public RAGContoller (@Qualifier("defaultChatClient") final ChatClient chatClient, final VectorStore vectorStore,
+                         @Qualifier("webSearchRAGChatClient") final ChatClient webSearchChatClient){
         this.chatClient = chatClient;
         this.vectorStore = vectorStore;
+        this.webSearchChatClient = webSearchChatClient;
     }
 
     @Value("classpath:/promptTemplates/systemPromptRandomDataTemplate.st")
@@ -87,4 +91,20 @@ public class RAGContoller {
 
         return ResponseEntity.ok(answer);
     }
+
+    @GetMapping("/web-search")
+    public ResponseEntity<String> webSearch(@RequestHeader("username") final String username,
+                                               @RequestParam("message") final String message) {
+
+
+        final String answer = webSearchChatClient
+                .prompt()
+                .advisors(a -> a.param(CONVERSATION_ID, username))
+                .user(message)
+                .call()
+                .content();
+
+        return ResponseEntity.ok(answer);
+    }
+
 }
