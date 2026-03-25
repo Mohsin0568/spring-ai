@@ -1,0 +1,21 @@
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n"
+  level:
+    org:
+      springframework:
+        ai:
+          chat:
+            client:
+              advisor: debug
+
+spring:
+  application:
+    name: mcp-client
+  ai:
+    openai:
+      api-key: ${OPEN_API_KEY}
+    mcp:
+      client:
+        stdio:
+          servers-configuration: classpath:mcp-servers.json
