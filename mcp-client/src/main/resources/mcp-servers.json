@@ -1,5 +1,12 @@
 {
   "mcpServers": {
+    "spring-ai-mcp": {
+      "command": "/usr/bin/java",
+      "args": [
+        "-jar",
+        "/Users/mohsinmurtuza/Documents/Programming/AI-SpringBoot/mcp-server-stdio/target/mcp-server-stdio-0.0.1-SNAPSHOT.jar "
+      ]
+    },
     "filesystem": {
       "command": "npx",
       "args": [
