@@ -1,5 +1,6 @@
 package com.systa.controller;
 
+import com.systa.tools.PurchaseOrderTool;
 import lombok.AllArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,12 +16,20 @@ public class QueryController {
 
     private final ChatClient chatClient;
 
-    private Resource systemMessage;
+    private final Resource systemMessageForQueryGeneration;
+
+    private final Resource systemMessageForPOGeneration;
+
+    private final PurchaseOrderTool purchaseOrderTool;
 
     public QueryController(final ChatClient chatClient,
-                           @Value("classpath:/promptTemplates/purchase_order_query_system_message.st") final Resource systemMessage){
+                           final PurchaseOrderTool purchaseOrderTool,
+                           @Value("classpath:/promptTemplates/purchase_order_query_system_message.st") final Resource systemMessageForQueryGeneration,
+                           @Value("classpath:/promptTemplates/purchase_order_query_system_message_for_tools.st") final Resource systemMessageForPOGeneration){
         this.chatClient = chatClient;
-        this.systemMessage = systemMessage;
+        this.systemMessageForQueryGeneration = systemMessageForQueryGeneration;
+        this.systemMessageForPOGeneration = systemMessageForPOGeneration;
+        this.purchaseOrderTool = purchaseOrderTool;
     }
 
     @GetMapping("/chat")
@@ -32,8 +41,19 @@ public class QueryController {
     public String generateQuery(@RequestParam("query") final String query){
         return chatClient
                 .prompt()
-                .system(systemMessage)
+                .system(systemMessageForQueryGeneration)
                 .user(query)
+                .call()
+                .content();
+    }
+
+    @GetMapping("/generate-purchase-order")
+    public String generatePurchaseOrders(@RequestParam("query") final String query){
+        return chatClient
+                .prompt()
+                .system(systemMessageForPOGeneration)
+                .user(query)
+                .tools(purchaseOrderTool)
                 .call()
                 .content();
     }
