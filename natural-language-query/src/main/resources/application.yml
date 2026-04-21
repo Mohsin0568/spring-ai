@@ -1,0 +1,16 @@
+logging:
+  level:
+    org:
+      springframework:
+        ai:
+          chat:
+            client:
+              advisor: debug
+
+spring:
+  application:
+    name: natural-language-query-app
+  ai:
+    openai:
+      api-key: ${OPEN_API_KEY}
+
