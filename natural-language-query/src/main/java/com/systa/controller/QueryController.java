@@ -6,11 +6,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.ResponseEntity;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.io.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -52,13 +50,14 @@ public class QueryController {
     }
 
     @GetMapping("/generate-purchase-order")
-    public String generatePurchaseOrders(@RequestParam("query") final String query){
+    @ResponseBody
+    public List<PurchaseOrderDomain> generatePurchaseOrders(@RequestParam("query") final String query){
         return chatClient
                 .prompt()
                 .system(systemMessageForPOGeneration)
                 .user(query)
                 .tools(purchaseOrderTool)
                 .call()
-                .content();
+                .entity(new ParameterizedTypeReference<List<PurchaseOrderDomain>>() {});
     }
 }
