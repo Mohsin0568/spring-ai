@@ -1,7 +1,9 @@
 package com.systa.service;
 
+import com.systa.domain.PurchaseOrderDomain;
 import com.systa.domain.PurchaseOrderSearchRequest;
 import com.systa.entity.PurchaseOrder;
+import com.systa.util.PurchaseOrderMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -105,6 +107,7 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
             query.limit(searchRequest.limit());
         }
 
-        return mongoTemplate.find(query, PurchaseOrder.class);
+        final List<PurchaseOrder> purchaseOrders = mongoTemplate.find(query, PurchaseOrder.class);
+        return PurchaseOrderMapper.toDomain(purchaseOrders);
     }
 }

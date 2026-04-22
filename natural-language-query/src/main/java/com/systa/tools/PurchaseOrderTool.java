@@ -1,5 +1,6 @@
 package com.systa.tools;
 
+import com.systa.domain.PurchaseOrderDomain;
 import com.systa.domain.PurchaseOrderSearchRequest;
 import com.systa.service.PurchaseOrderService;
 import lombok.AllArgsConstructor;
@@ -23,9 +24,6 @@ public class PurchaseOrderTool {
     )
     public List<PurchaseOrderDomain> searchPurchaseOrders(PurchaseOrderSearchRequest request) {
         log.info("Received search request: {}", request);
-        return List.of(
-                new PurchaseOrderDomain("1", "PO-12345"),
-                new PurchaseOrderDomain("2", "PO-67890")
-        );
+        return purchaseOrderService.getPurchaseOrderDetails(request);
     }
 }

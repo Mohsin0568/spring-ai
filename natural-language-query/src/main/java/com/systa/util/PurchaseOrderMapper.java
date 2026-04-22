@@ -1,17 +1,18 @@
 package com.systa.util;
 
 import com.systa.domain.OrderLine;
-import com.systa.domain.PurchaseOrder;
+import com.systa.domain.PurchaseOrderDomain;
 import com.systa.domain.ShipToLocation;
 import com.systa.domain.Supplier;
+import com.systa.entity.PurchaseOrder;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class PurchaseOrderMapper {
 
-    public static PurchaseOrder toDomain(com.systa.entity.PurchaseOrder entity) {
-        return new PurchaseOrder(
+    public static PurchaseOrderDomain toDomain(final PurchaseOrder entity) {
+        return new PurchaseOrderDomain(
                 entity.id(),
                 entity.entityIdentificationNumber(),
                 entity.poNumber(),
@@ -26,6 +27,10 @@ public class PurchaseOrderMapper {
                 entity.orderLines().stream().map(PurchaseOrderMapper::toDomain).collect(Collectors.toList()),
                 entity.vehicleDepotIdentifier()
         );
+    }
+
+    public static List<PurchaseOrderDomain> toDomain(final List<PurchaseOrder> entities) {
+        return entities.stream().map(PurchaseOrderMapper::toDomain).collect(Collectors.toList());
     }
 
     private static Supplier toDomain(com.systa.entity.Supplier entity) {

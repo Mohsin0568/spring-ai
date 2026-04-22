@@ -3,7 +3,7 @@ package com.systa.domain;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public record PurchaseOrder(
+public record PurchaseOrderDomain(
                      String id,
                      String entityIdentificationNumber,
                      String poNumber,

@@ -10,6 +10,11 @@ logging:
 spring:
   application:
     name: natural-language-query-app
+  data:
+    mongodb:
+      uri: localhost:27017
+      database: test
+      auto-index-creation: true
   ai:
     openai:
       api-key: ${OPEN_API_KEY}
