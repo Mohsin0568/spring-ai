@@ -12,6 +12,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Service
 @AllArgsConstructor
@@ -34,7 +35,7 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
         }
 
         if (searchRequest.bookingNumber() != null) {
-            query.addCriteria(Criteria.where("bookingNumber").is(searchRequest.bookingNumber()));
+            query.addCriteria(caseInsensitiveExact("bookingNumber", searchRequest.bookingNumber()));
         }
 
         if (searchRequest.vehicleNumber() != null) {
@@ -43,7 +44,7 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 
         // Supplier
         if (searchRequest.supplierName() != null) {
-            query.addCriteria(Criteria.where("supplier.name").is(searchRequest.supplierName()));
+            query.addCriteria(caseInsensitiveExact("supplier.name", searchRequest.supplierName()));
         }
 
         if (searchRequest.supplierLegacyId() != null) {
@@ -58,8 +59,7 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 
         // Product (array)
         if (searchRequest.productName() != null) {
-            query.addCriteria(Criteria.where("orderLines.productName")
-                    .is(searchRequest.productName()));
+            query.addCriteria(caseInsensitiveExact("orderLines.productName", searchRequest.productName()));
         }
 
         // Quantity range
@@ -109,5 +109,10 @@ public class PurchaseOrderServiceImpl implements PurchaseOrderService {
 
         final List<PurchaseOrder> purchaseOrders = mongoTemplate.find(query, PurchaseOrder.class);
         return PurchaseOrderMapper.toDomain(purchaseOrders);
+    }
+
+    private Criteria caseInsensitiveExact(String field, String value) {
+        return Criteria.where(field)
+                .regex("^" + Pattern.quote(value) + "$", "i");
     }
 }
