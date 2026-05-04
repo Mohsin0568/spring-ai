@@ -32,7 +32,7 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 
         // Customer
         if (searchRequest.customerName() != null) {
-            query.addCriteria(caseInsensitiveExact("customer.name", searchRequest.customerName()));
+            query.addCriteria(caseInsensitiveContains("customer.name", searchRequest.customerName()));
         }
 
         if (searchRequest.customerId() != null) {
@@ -142,5 +142,10 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
     private Criteria caseInsensitiveExact(String field, String value) {
         return Criteria.where(field)
                 .regex("^" + Pattern.quote(value) + "$", "i");
+    }
+
+    private Criteria caseInsensitiveContains(String field, String value) {
+        String safe = Pattern.quote(value);
+        return Criteria.where(field).regex(".*" + safe + ".*", "i");
     }
 }

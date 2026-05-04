@@ -30,6 +30,12 @@ Order Items:
 - minQuantity → quantity (minimum)
 - maxQuantity → quantity (maximum)
 
+Order statuses:
+- Placed
+- Shipped
+- Delivered
+- Cancelled
+
 Dates:
 - deliveryDateFrom / deliveryDateTo → deliveryDateTime range
 - orderPlacementFrom / orderPlacementTo → orderPlacementDateTime range
