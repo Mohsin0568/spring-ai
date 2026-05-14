@@ -1,7 +1,6 @@
 package com.systa.controller;
 
 import com.systa.domain.CustomerOrderDomain;
-import com.systa.tools.CustomerOrderTool;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -18,16 +17,13 @@ public class QueryController {
     private final ChatClient chatClient;
     private final Resource systemMessageForQueryGeneration;
     private final Resource systemMessageForOrderGeneration;
-    private final CustomerOrderTool customerOrderTool;
 
     public QueryController(final ChatClient chatClient,
-                           final CustomerOrderTool customerOrderTool,
                            @Value("classpath:/promptTemplates/customer_order_query_system_message.st") final Resource systemMessageForQueryGeneration,
                            @Value("classpath:/promptTemplates/customer_order_query_system_message_for_tools.st") final Resource systemMessageForOrderGeneration){
         this.chatClient = chatClient;
         this.systemMessageForQueryGeneration = systemMessageForQueryGeneration;
         this.systemMessageForOrderGeneration = systemMessageForOrderGeneration;
-        this.customerOrderTool = customerOrderTool;
     }
 
     @GetMapping("/chat")
@@ -51,7 +47,6 @@ public class QueryController {
                 .prompt()
                 .system(systemMessageForOrderGeneration)
                 .user(query)
-//                .tools(customerOrderTool)
                 .call()
                 .entity(new ParameterizedTypeReference<List<CustomerOrderDomain>>() {});
     }
