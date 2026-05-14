@@ -1,0 +1,164 @@
+[
+  {
+    "_id": "CO1",
+    "orderId": "OID-1001",
+    "deliveryDateTime": "2026-05-01T10:00:00",
+    "orderPlacementDateTime": "2026-04-29T09:00:00",
+    "customer": { "customerId": "C1", "name": "John Retail Ltd" },
+    "contactDetails": {
+      "email": "john@example.com",
+      "phone": "9876500001"
+    },
+    "deliveryAddress": { "postCode": "LOC1", "city": "London", "country": "England" },
+    "orderItems": [
+      { "lineNumber": 1, "productName": "Laptop", "productId": "P1", "quantity": 2 },
+      { "lineNumber": 2, "productName": "Mouse", "productId": "P2", "quantity": 5 }
+    ],
+    "orderStatus": "Placed"
+  },
+  {
+    "_id": "CO2",
+    "orderId": "OID-1002",
+    "deliveryDateTime": "2026-05-02T12:00:00",
+    "orderPlacementDateTime": "2026-04-30T11:00:00",
+    "customer": { "customerId": "C2", "name": "Tech Solutions" },
+    "contactDetails": {
+      "email": "tech@example.com",
+      "phone": "9876500002"
+    },
+    "deliveryAddress": { "postCode": "LOC2", "city": "Manchester", "country": "England" },
+    "orderItems": [
+      { "lineNumber": 1, "productName": "Keyboard", "productId": "P3", "quantity": 10 }
+    ],
+    "orderStatus": "Shipped"
+  },
+  {
+    "_id": "CO3",
+    "orderId": "OID-1003",
+    "deliveryDateTime": "2026-05-03T14:00:00",
+    "orderPlacementDateTime": "2026-05-01T10:30:00",
+    "customer": { "customerId": "C1", "name": "John Retail Ltd" },
+    "contactDetails": {
+      "email": "john@example.com",
+      "phone": "9876500001"
+    },
+    "deliveryAddress": { "postCode": "LOC3", "city": "Birmingham", "country": "England" },
+    "orderItems": [
+      { "lineNumber": 1, "productName": "Laptop", "productId": "P1", "quantity": 1 }
+    ],
+    "orderStatus": "Delivered"
+  },
+  {
+    "_id": "CO4",
+    "orderId": "OID-1004",
+    "deliveryDateTime": "2026-05-04T09:30:00",
+    "orderPlacementDateTime": "2026-05-02T08:15:00",
+    "customer": { "customerId": "C3", "name": "Global Traders" },
+    "contactDetails": {
+      "email": "global@example.com",
+      "phone": "9876500003"
+    },
+    "deliveryAddress": { "postCode": "LOC1", "city": "London", "country": "England" },
+    "orderItems": [
+      { "lineNumber": 1, "productName": "Monitor", "productId": "P4", "quantity": 7 }
+    ],
+    "orderStatus": "Placed"
+  },
+  {
+    "_id": "CO5",
+    "orderId": "OID-1005",
+    "deliveryDateTime": "2026-05-05T16:00:00",
+    "orderPlacementDateTime": "2026-05-03T14:00:00",
+    "customer": { "customerId": "C2", "name": "Tech Solutions" },
+    "contactDetails": {
+      "email": "tech@example.com",
+      "phone": "9876500002"
+    },
+    "deliveryAddress": { "postCode": "LOC2", "city": "Manchester", "country": "England" },
+    "orderItems": [
+      { "lineNumber": 1, "productName": "Mouse", "productId": "P2", "quantity": 20 },
+      { "lineNumber": 2, "productName": "Keyboard", "productId": "P3", "quantity": 15 }
+    ],
+    "orderStatus": "Cancelled"
+  },
+  {
+    "_id": "CO6",
+    "orderId": "OID-1006",
+    "deliveryDateTime": "2026-05-06T11:00:00",
+    "orderPlacementDateTime": "2026-05-04T10:00:00",
+    "customer": { "customerId": "C4", "name": "Retail Hub" },
+    "contactDetails": {
+      "email": "retail@example.com",
+      "phone": "9876500004"
+    },
+    "deliveryAddress": { "postCode": "LOC4", "city": "Leeds", "country": "England" },
+    "orderItems": [
+      { "lineNumber": 1, "productName": "Printer", "productId": "P5", "quantity": 4 }
+    ],
+    "orderStatus": "Shipped"
+  },
+  {
+    "_id": "CO7",
+    "orderId": "OID-1007",
+    "deliveryDateTime": "2026-05-07T13:30:00",
+    "orderPlacementDateTime": "2026-05-05T12:00:00",
+    "customer": { "customerId": "C3", "name": "Global Traders" },
+    "contactDetails": {
+      "email": "global@example.com",
+      "phone": "9876500003"
+    },
+    "deliveryAddress": { "postCode": "LOC1", "city": "London", "country": "England" },
+    "orderItems": [
+      { "lineNumber": 1, "productName": "Monitor", "productId": "P4", "quantity": 12 }
+    ],
+    "orderStatus": "Delivered"
+  },
+  {
+    "_id": "CO8",
+    "orderId": "OID-1008",
+    "deliveryDateTime": "2026-05-08T15:00:00",
+    "orderPlacementDateTime": "2026-05-06T13:00:00",
+    "customer": { "customerId": "C1", "name": "John Retail Ltd" },
+    "contactDetails": {
+      "email": "john@example.com",
+      "phone": "9876500001"
+    },
+    "deliveryAddress": { "postCode": "LOC3", "city": "Birmingham", "country": "England" },
+    "orderItems": [
+      { "lineNumber": 1, "productName": "Laptop", "productId": "P1", "quantity": 3 }
+    ],
+    "orderStatus": "Placed"
+  },
+  {
+    "_id": "CO9",
+    "orderId": "OID-1009",
+    "deliveryDateTime": "2026-05-09T17:00:00",
+    "orderPlacementDateTime": "2026-05-07T16:00:00",
+    "customer": { "customerId": "C2", "name": "Tech Solutions" },
+    "contactDetails": {
+      "email": "tech@example.com",
+      "phone": "9876500002"
+    },
+    "deliveryAddress": { "postCode": "LOC2", "city": "Manchester", "country": "England" },
+    "orderItems": [
+      { "lineNumber": 1, "productName": "Laptop", "productId": "P1", "quantity": 6 }
+    ],
+    "orderStatus": "Shipped"
+  },
+  {
+    "_id": "CO10",
+    "orderId": "OID-1010",
+    "deliveryDateTime": "2026-05-10T08:00:00",
+    "orderPlacementDateTime": "2026-05-08T07:30:00",
+    "customer": { "customerId": "C4", "name": "Retail Hub" },
+    "contactDetails": {
+      "email": "retail@example.com",
+      "phone": "9876500004"
+    },
+    "deliveryAddress": { "postCode": "LOC4", "city": "Leeds", "country": "England" },
+    "orderItems": [
+      { "lineNumber": 1, "productName": "Printer", "productId": "P5", "quantity": 1 }
+    ],
+    "orderStatus": "Placed"
+  }
+]
