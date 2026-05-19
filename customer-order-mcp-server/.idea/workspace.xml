@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3a13f723-5998-48ad-9e2f-bd4dd51c7e4b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/systa/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/systa/config/McpServerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/systa/domain/ContactDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/systa/domain/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/systa/domain/CustomerOrderDomain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/systa/domain/CustomerOrderSearchRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/systa/domain/DeliveryAddress.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/systa/domain/OrderItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/systa/entity/ContactDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/systa/entity/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/systa/entity/CustomerOrder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/systa/entity/DeliveryAddress.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/systa/entity/OrderItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/systa/service/CustomerOrderService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/systa/service/CustomerOrderServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/systa/tools/CustomerOrderTool.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/systa/util/CustomerOrderMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/systa/CustomerOrderMcpServerApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/HELP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/src/main/java/com/systa/Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/src/main/java/com/systa/advisors/TokenAuditAdvisor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/src/main/java/com/systa/config/ChatConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/src/main/java/com/systa/controller/QueryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/src/main/java/com/systa/domain/ContactDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/src/main/java/com/systa/domain/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/src/main/java/com/systa/domain/CustomerOrderDomain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/src/main/java/com/systa/domain/CustomerOrderSearchRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/src/main/java/com/systa/domain/DeliveryAddress.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/src/main/java/com/systa/domain/OrderItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/src/main/resources/promptTemplates/customer_order_query_system_message.st" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/src/main/resources/promptTemplates/customer_order_query_system_message_for_tools.st" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../customer-orders-service-mcp-client/src/test/java/com/systa/ApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="3Dg5ocX9VI9ccf5pBj20Q1w1UW8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.McpServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.customer-order-mcp-server [clean,install...].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/mohsinmurtuza/Documents/Programming/AI-SpringBoot/customer-order-mcp-server/src/main/java/com/systa&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/com/systa" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean install -DskipTests" />
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="McpServerApplication" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.systa.Application" />
+      <module name="customer-order-mcp-server" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3a13f723-5998-48ad-9e2f-bd4dd51c7e4b" name="Changes" comment="" />
+      <created>1778691047795</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1778691047795</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/systa/service/PurchaseOrderServiceImpl.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/systa/service/CustomerOrderServiceImpl.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
