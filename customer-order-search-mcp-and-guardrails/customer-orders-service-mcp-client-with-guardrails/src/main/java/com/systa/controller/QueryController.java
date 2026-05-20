@@ -1,0 +1,56 @@
+package com.systa.controller;
+
+import com.systa.domain.CustomerOrderDomain;
+import com.systa.validation.ValidSearchQuery;
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.io.Resource;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@Validated
+@RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
+public class QueryController {
+
+    private final ChatClient chatClient;
+    private final Resource systemMessageForQueryGeneration;
+    private final Resource systemMessageForOrderGeneration;
+
+    public QueryController(final ChatClient chatClient,
+                           @Value("classpath:/promptTemplates/customer_order_query_system_message.st") final Resource systemMessageForQueryGeneration,
+                           @Value("classpath:/promptTemplates/customer_order_query_system_message_for_tools.st") final Resource systemMessageForOrderGeneration){
+        this.chatClient = chatClient;
+        this.systemMessageForQueryGeneration = systemMessageForQueryGeneration;
+        this.systemMessageForOrderGeneration = systemMessageForOrderGeneration;
+    }
+
+    @GetMapping("/chat")
+    public String getMessage(@ValidSearchQuery @RequestParam("message") final String message){
+        return chatClient.prompt(message).call().content();
+    }
+
+    @GetMapping("/generate-query")
+    public String generateQuery(@ValidSearchQuery @RequestParam("query") final String query){
+        return chatClient
+                .prompt()
+                .system(systemMessageForQueryGeneration)
+                .user(query)
+                .call()
+                .content();
+    }
+
+    @GetMapping("/orders")
+    public List<CustomerOrderDomain> generateCustomerOrders(@ValidSearchQuery @RequestParam("query") final String query){
+        return chatClient
+                .prompt()
+                .system(systemMessageForOrderGeneration)
+                .user(query)
+                .call()
+                .entity(new ParameterizedTypeReference<>() {});
+    }
+}
