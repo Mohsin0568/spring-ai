@@ -41,7 +41,22 @@ public class QueryValidationService {
         Pattern.compile("\\[\\s*(SYSTEM|INST|SYS)\\s*\\]", Pattern.CASE_INSENSITIVE),
         Pattern.compile("```\\s*system", Pattern.CASE_INSENSITIVE),
         Pattern.compile("\\bjailbreak\\b", Pattern.CASE_INSENSITIVE),
-        Pattern.compile("\\bbypass\\b.{0,30}\\b(guardrail|restriction|rule|filter)", Pattern.CASE_INSENSITIVE)
+        Pattern.compile("\\bbypass\\b.{0,30}\\b(guardrail|restriction|rule|filter)", Pattern.CASE_INSENSITIVE),
+
+        // Roleplay / persona-hijacking verbs not covered above.
+        Pattern.compile("\\broleplay\\b", Pattern.CASE_INSENSITIVE),
+        Pattern.compile("\\bimpersonate\\b", Pattern.CASE_INSENSITIVE),
+        Pattern.compile("\\btake\\s+on\\s+(the\\s+)?persona\\b", Pattern.CASE_INSENSITIVE),
+
+        // Unrestricted / DAN-style persona language.
+        Pattern.compile("\\bunrestricted\\s+(version|mode|AI|assistant|model)\\b", Pattern.CASE_INSENSITIVE),
+        Pattern.compile("\\b(no|without)\\s+(any\\s+)?(restrictions?|limits?|constraints?|rules?|filters?)\\b", Pattern.CASE_INSENSITIVE),
+        Pattern.compile("\\bDAN\\b"),
+
+        // Refusal-bypass language ("never refuses", "always comply", "cannot decline").
+        Pattern.compile("\\bnever\\s+refus(e|es|ing)\\b", Pattern.CASE_INSENSITIVE),
+        Pattern.compile("\\balways\\s+(comply|obey|follow|execute)\\b", Pattern.CASE_INSENSITIVE),
+        Pattern.compile("\\bcannot\\s+(decline|refuse|reject)\\b", Pattern.CASE_INSENSITIVE)
     );
 
     // PII patterns — credit cards (Visa/MC/AmEx/Discover), SSN, and IBAN bank account numbers.
