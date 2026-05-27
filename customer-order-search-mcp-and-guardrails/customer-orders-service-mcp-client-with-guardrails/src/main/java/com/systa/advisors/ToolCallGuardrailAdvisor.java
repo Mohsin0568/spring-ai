@@ -20,6 +20,7 @@ public class ToolCallGuardrailAdvisor implements CallAdvisor {
 
         try {
             ChatClientResponse response = callAdvisorChain.nextCall(chatClientRequest);
+            checkForOperationNotPermitted(response);
             logger.debug("ToolCallGuardrailAdvisor: tool execution completed successfully");
             return response;
         } catch (GuardrailViolationException ex) {
@@ -36,6 +37,21 @@ public class ToolCallGuardrailAdvisor implements CallAdvisor {
                 cause = cause.getCause();
             }
             throw ex;
+        }
+    }
+
+    // Inspects the LLM text response for the OPERATION_NOT_PERMITTED sentinel defined
+    // in the system prompt, which the LLM emits when it detects a policy violation itself.
+    private void checkForOperationNotPermitted(ChatClientResponse response) {
+        var chatResponse = response.chatResponse();
+        if (chatResponse == null || chatResponse.getResult() == null) {
+            return;
+        }
+        String text = chatResponse.getResult().getOutput().getText();
+        if (text != null && text.contains("OPERATION_NOT_PERMITTED")) {
+            logger.warn("ToolCallGuardrailAdvisor: LLM returned OPERATION_NOT_PERMITTED sentinel — rejecting response");
+            throw new GuardrailViolationException(
+                "Operation not permitted: the requested action violates the system's security policy.");
         }
     }
 
