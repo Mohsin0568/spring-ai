@@ -10,9 +10,9 @@ import org.springframework.ai.chat.client.advisor.api.CallAdvisorChain;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ToolCallGuardrailAdvisor implements CallAdvisor {
+public class OutputGuardrailAdvisor implements CallAdvisor {
 
-    private static final Logger logger = LoggerFactory.getLogger(ToolCallGuardrailAdvisor.class);
+    private static final Logger logger = LoggerFactory.getLogger(OutputGuardrailAdvisor.class);
 
     @Override
     public ChatClientResponse adviseCall(ChatClientRequest chatClientRequest, CallAdvisorChain callAdvisorChain) {

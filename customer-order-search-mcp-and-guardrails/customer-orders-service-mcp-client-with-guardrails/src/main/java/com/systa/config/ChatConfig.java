@@ -3,7 +3,7 @@ package com.systa.config;
 import com.systa.advisors.GuardedToolCallback;
 import com.systa.advisors.InputGuardrailAdvisor;
 import com.systa.advisors.TokenAuditAdvisor;
-import com.systa.advisors.ToolCallGuardrailAdvisor;
+import com.systa.advisors.OutputGuardrailAdvisor;
 import lombok.AllArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
@@ -21,7 +21,7 @@ public class ChatConfig {
 
     private final TokenAuditAdvisor tokenAuditAdvisor;
     private final InputGuardrailAdvisor inputGuardrailAdvisor;
-    private final ToolCallGuardrailAdvisor toolCallGuardrailAdvisor;
+    private final OutputGuardrailAdvisor outputGuardrailAdvisor;
 
     @Bean
     public ChatClient getChatClient(final ChatClient.Builder chatClientBuilder,
@@ -32,7 +32,7 @@ public class ChatConfig {
                 .toArray(ToolCallback[]::new);
 
         return chatClientBuilder
-                .defaultAdvisors(List.of(inputGuardrailAdvisor, tokenAuditAdvisor, toolCallGuardrailAdvisor, new SimpleLoggerAdvisor()))
+                .defaultAdvisors(List.of(inputGuardrailAdvisor, tokenAuditAdvisor, outputGuardrailAdvisor, new SimpleLoggerAdvisor()))
                 .defaultToolCallbacks(guardedCallbacks)
                 .build();
     }
