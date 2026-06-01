@@ -1,0 +1,30 @@
+logging:
+  level:
+    org:
+      springframework:
+        ai:
+          chat:
+            client:
+              advisor: debug
+
+spring:
+  application:
+    name: customer-order-service
+  data:
+    mongodb:
+      uri: localhost:27017
+      database: test
+      auto-index-creation: true
+  ai:
+    openai:
+      api-key: ${OPEN_API_KEY}
+      chat:
+        options:
+          model: gpt-4.1-mini
+    mcp:
+      client:
+        sse:
+          connections:
+            systa:
+              url: http://localhost:8090
+

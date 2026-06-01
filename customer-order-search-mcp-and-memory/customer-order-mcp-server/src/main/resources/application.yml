@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: customer-order-mcp-server
+  data:
+    mongodb:
+      uri: localhost:27017
+      database: test
+      auto-index-creation: true
+
+
+server:
+  port: 8090
