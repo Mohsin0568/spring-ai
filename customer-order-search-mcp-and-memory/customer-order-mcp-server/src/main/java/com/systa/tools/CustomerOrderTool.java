@@ -19,8 +19,7 @@ public class CustomerOrderTool {
 
     @Tool(
             name = "search_customer_orders",
-            description = "Search customer orders using structured filters like customer, product, dates, delivery address and contact details",
-            returnDirect = true
+            description = "Search customer orders using structured filters like customer, product, dates, delivery address and contact details"
     )
     public List<CustomerOrderDomain> searchCustomerOrders(CustomerOrderSearchRequest request) {
         log.info("Received search request: {}", request);

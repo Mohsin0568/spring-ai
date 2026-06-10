@@ -4,6 +4,7 @@ import com.systa.domain.CustomerOrderDomain;
 import com.systa.session.UserContext;
 import com.systa.validation.ValidSearchQuery;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.io.Resource;
@@ -31,16 +32,22 @@ public class QueryController {
     }
 
     @GetMapping("/chat")
-    public String getMessage(@ValidSearchQuery @RequestParam("message") final String message){
-        return chatClient.prompt(message).call().content();
+    public String getMessage(@ValidSearchQuery @RequestParam("message") final String message,
+                             @RequestHeader(value = "X-User-Id", required = false) final String userId){
+        return chatClient.prompt(message)
+                .advisors(advisor -> advisor.param(ChatMemory.CONVERSATION_ID, conversationIdFor(userId)))
+                .call()
+                .content();
     }
 
     @GetMapping("/generate-query")
-    public String generateQuery(@ValidSearchQuery @RequestParam("query") final String query){
+    public String generateQuery(@ValidSearchQuery @RequestParam("query") final String query,
+                                @RequestHeader(value = "X-User-Id", required = false) final String userId){
         return chatClient
                 .prompt()
                 .system(systemMessageForQueryGeneration)
                 .user(query)
+                .advisors(advisor -> advisor.param(ChatMemory.CONVERSATION_ID, conversationIdFor(userId)))
                 .call()
                 .content();
     }
@@ -54,11 +61,38 @@ public class QueryController {
                     .prompt()
                     .system(systemMessageForOrderGeneration)
                     .user(query)
+                    .advisors(advisor -> advisor.param(ChatMemory.CONVERSATION_ID, conversationIdFor(userId)))
                     .call()
                     .entity(new ParameterizedTypeReference<>() {
                     });
         }finally {
             UserContext.clear();
         }
+    }
+
+    @GetMapping("/v1/orders")
+    public String generateCustomerOrdersV1(@ValidSearchQuery @RequestParam("query") final String query,
+                                                            @RequestHeader("X-User-Id") final String userId){
+        UserContext.set(userId);
+        try {
+            return chatClient
+                    .prompt()
+                    .system(systemMessageForOrderGeneration)
+                    .user(query)
+                    .advisors(advisor -> advisor.param(ChatMemory.CONVERSATION_ID, conversationIdFor(userId)))
+                    .call()
+                    .content();
+        }finally {
+            UserContext.clear();
+        }
+    }
+
+    /**
+     * Each user gets their own running conversation so follow-up queries (e.g. "what is the
+     * total quantity") are resolved against the previous turn's context (e.g. "pending delivery
+     * orders"). Requests without an X-User-Id fall back to a single shared conversation.
+     */
+    private static String conversationIdFor(final String userId){
+        return (userId == null || userId.isBlank()) ? ChatMemory.DEFAULT_CONVERSATION_ID : userId;
     }
 }

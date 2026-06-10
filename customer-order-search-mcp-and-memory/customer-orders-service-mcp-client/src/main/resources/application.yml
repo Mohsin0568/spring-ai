@@ -7,6 +7,10 @@ logging:
             client:
               advisor: debug
 
+app:
+  chat-memory:
+    max-messages: 20
+
 spring:
   application:
     name: customer-order-service
